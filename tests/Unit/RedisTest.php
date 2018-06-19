@@ -18,10 +18,9 @@ class RedisTest extends TestCase
 
 		$host = '127.0.0.1';
 		$port = '6379';
-		$username = 'user';
 		$password = 'pass';
 		$timeout = 100;
-		$this->instance = new Redis($redisInstance, $host, $port, $username, $password, $timeout);
+		$this->instance = new Redis($redisInstance, $host, $port, $password, $timeout);
 	}
 
 	public function testInstance()

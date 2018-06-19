@@ -7,35 +7,73 @@ namespace FcPhp\Redis
 
 	class Redis implements IRedis
 	{
+		/**
+		 * @var \Redis
+		 */
 		private $redis;
 
+		/**
+		 * @var string
+		 */
 		private $host;
 
+		/**
+		 * @var string
+		 */
 		private $port;
 
-		private $username;
-
+		/**
+		 * @var string
+		 */
 		private $password;
 
+		/**
+		 * @var int
+		 */
 		private $timeout;
 
+		/**
+		 * @var bool
+		 */
 		private $connected = false;
 
-		public function __construct(RedisPHP $redis, string $host, string $port, string $username = null, string $password = null, int $timeout = 100)
+		/**
+		 * Method to construct instance of Redis
+		 *
+		 * @param \Redis $redis Redis instance
+		 * @param string $host Host to connect Redis server
+		 * @param string $port Port of Redis server
+		 * @param string $password Password of Redis server
+		 * @param int $timeout Timeout of try connect
+		 * @return void
+		 */
+		public function __construct(RedisPHP $redis, string $host, string $port, string $password = null, int $timeout = 100)
 		{
 			$this->redis = $redis;
 			$this->host = $host;
 			$this->port = $port;
-			$this->username = $username;
 			$this->password = $password;
 			$this->timeout = $timeout;
 		}
 
+		/**
+		 * Method to connect on Redis server
+		 *
+		 * @return void
+		 */
 		private function connect() :void
 		{
 			$this->redis->connect($this->host, $this->port, $this->timeout);
+			if(!empty($this->password)) {
+				$this->redis->auth($this->password);
+			}
 		}
 
+		/**
+		 * Method to check if Redis has connected
+		 *
+		 * @return FcPhp\Redis\Interfaces\IRedis
+		 */
 		private function checkConnect() :IRedis
 		{
 			if(!$this->connected) {
@@ -45,6 +83,12 @@ namespace FcPhp\Redis
 			return $this;
 		}
 
+		/**
+		 * Method to return content by key in Redis server
+		 *
+		 * @param string $key Key of content
+		 * @return mixed
+		 */
 		public function get(string $key)
 		{
 			return $this
@@ -53,6 +97,13 @@ namespace FcPhp\Redis
 					->get($key);
 		}
 
+		/**
+		 * Method to configure content by key in Redis server
+		 *
+		 * @param string $key Key of content
+		 * @param mixed $content Content to save on Redis
+		 * @return FcPhp\Redis\Interfaces\IRedis
+		 */
 		public function set(string $key, $content) :IRedis
 		{
 			$this
