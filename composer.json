@@ -1,7 +1,7 @@
 {
     "name": "00f100/fcphp-redis",
     "type": "package",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "description": "Redis Database for FcPhp",
     "keywords": ["redis", "fcphp", "php7"],
     "homepage": "https://github.com/00f100/fcphp-redis",
