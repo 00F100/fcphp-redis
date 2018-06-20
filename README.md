@@ -28,7 +28,6 @@ or add in composer.json
 /**
  * Method to construct instance of Redis
  *
- * @param \Redis $redis Redis instance
  * @param string $host Host to connect Redis server
  * @param string $port Port of Redis server
  * @param string $password Password of Redis server
