@@ -35,7 +35,7 @@ or add in composer.json
  * @param int $timeout Timeout of try connect
  * @return void
  */
-$redis = new Redis(\Redis $redis, string $host, string $port, string $password = null, int $timeout = 100);
+$redis = RedisFacade::getInstance(string $host, string $port, string $password = null, int $timeout = 100);
 
 ```
 
@@ -44,10 +44,9 @@ $redis = new Redis(\Redis $redis, string $host, string $port, string $password =
 ```php
 <?php
 
-use Redis as RedisPHP;
-use FcPhp\Redis\Redis;
+use FcPhp\Redis\Facades\RedisFacade;
 
-$redis = new Redis(new RedisPHP(), '127.0.0.1', '6379', null, 100);
+$redis = RedisFacade::getInstance('127.0.0.1', '6379', null, 100);
 
 $redis->set('key', 'content');
 

@@ -2,6 +2,7 @@
 
 use FcPhp\Redis\Redis;
 use FcPhp\Redis\Interfaces\IRedis;
+use FcPhp\Redis\Facades\RedisFacade;
 use PHPUnit\Framework\TestCase;
 use Redis as RedisPHP;
 
@@ -9,11 +10,11 @@ class RedisIntegrationTest extends TestCase
 {
 	public function setUp()
 	{
-		$host = '127.0.0.1';
+		$host = 'redis.docker';
 		$port = '6379';
 		$password = null;
 		$timeout = 100;
-		$this->instance = new Redis(new RedisPHP(), $host, $port, $password, $timeout);
+		$this->instance = RedisFacade::getInstance($host, $port, $password, $timeout);
 	}
 
 	public function testInstance()
