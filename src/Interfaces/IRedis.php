@@ -11,5 +11,7 @@ namespace FcPhp\Redis\Interfaces
 		public function get(string $key);
 
 		public function set(string $key, $content) :IRedis;
+
+		public function delete(string $key) :IRedis;
 	}
 }

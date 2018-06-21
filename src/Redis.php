@@ -112,5 +112,20 @@ namespace FcPhp\Redis
 					->set($key, $content);
 			return $this;
 		}
+
+		/**
+		 * Method to delete content
+		 *
+		 * @param string $key Key of content
+		 * @return FcPhp\Redis\Interfaces\IRedis
+		 */
+		public function delete(string $key) :IRedis
+		{
+			$this
+				->checkConnect()
+				->redis
+					->delete($key);
+			return $this;
+		}
 	}
 }
