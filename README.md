@@ -52,4 +52,10 @@ $redis->set('key', 'content');
 echo $redis->get('key');
 // Print: content
 
+print_r($redis->keys('*'));
+// List all keus into array
+
+$redis->delete('key');
+// Delete key
+
 ```
