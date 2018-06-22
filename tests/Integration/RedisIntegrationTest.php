@@ -10,7 +10,7 @@ class RedisIntegrationTest extends TestCase
 {
 	public function setUp()
 	{
-		$host = '127.0.0.1';
+		$host = 'redis.docker';
 		$port = '6379';
 		$password = null;
 		$timeout = 100;
@@ -26,5 +26,13 @@ class RedisIntegrationTest extends TestCase
 	{
 		$this->instance->set('key', 'value');
 		$this->assertEquals($this->instance->get('key'), 'value');
+	}
+
+	public function testDelete()
+	{
+		$this->instance->set('key', 'value');
+		$this->instance->delete('key');
+		$this->assertTrue(is_array($this->instance->keys('*')));
+		$this->assertTrue(empty($this->instance->get('key')));
 	}
 }

@@ -33,4 +33,12 @@ class RedisTest extends TestCase
 		$this->instance->set('key', 'value');
 		$this->assertEquals($this->instance->get('key'), 'value');
 	}
+
+	public function testDelete()
+	{
+		$this->instance->set('key', 'value');
+		$this->instance->delete('key');
+		$this->instance->keys('*');
+		$this->assertTrue(!is_null($this->instance->get('key')));
+	}
 }

@@ -127,5 +127,19 @@ namespace FcPhp\Redis
 					->delete($key);
 			return $this;
 		}
+
+		/**
+		 * Method to return list of all keys
+		 *
+		 * @param string $key Key of content
+		 * @return array
+		 */
+		public function keys(string $key)
+		{
+			return $this
+				->checkConnect()
+				->redis
+					->keys($key);
+		}
 	}
 }
