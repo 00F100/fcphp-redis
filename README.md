@@ -14,9 +14,9 @@ $ composer require 00f100/fcphp-redis
 or add in composer.json
 ```json
 {
-	"require": {
-		"00f100/fcphp-redis": "*"
-	}
+    "require": {
+        "00f100/fcphp-redis": "*"
+    }
 }
 ```
 
